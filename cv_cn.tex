@@ -1,0 +1,232 @@
+% ============================================================
+%  吴万星 — 个人简历 (中文版)
+% ============================================================
+\documentclass[10pt, a4paper]{article}
+
+% ── Encoding & CJK Support ──────────────────────────────────
+\usepackage[UTF8, heading=false]{ctex}
+\usepackage[T1]{fontenc}
+\usepackage{palatino}
+\usepackage{mathpazo}
+\usepackage{microtype}
+
+% ── Page Layout ──────────────────────────────────────────────
+\usepackage[top=1.2cm, bottom=1.2cm, left=1.5cm, right=1.5cm]{geometry}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% ── Packages ─────────────────────────────────────────────────
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{etoolbox}
+\usepackage{graphicx}
+
+% ── Colors ───────────────────────────────────────────────────
+\definecolor{headcol}{RGB}{30, 30, 30}
+\definecolor{rulecol}{RGB}{180, 50, 30}
+\definecolor{secline}{RGB}{200, 200, 200}
+\definecolor{linkcol}{RGB}{40, 80, 160}
+\definecolor{dategray}{RGB}{100, 100, 100}
+
+% Tag colors
+\definecolor{tagroute}{RGB}{130, 50, 160}
+\definecolor{taggenomics}{RGB}{40, 140, 90}
+\definecolor{tagrl}{RGB}{180, 100, 20}
+
+\hypersetup{
+  colorlinks = true,
+  urlcolor   = linkcol,
+  linkcolor  = linkcol,
+  pdfauthor  = {吴万星},
+  pdftitle   = {吴万星 — 个人简历},
+}
+
+% ── Section Headers ──────────────────────────────────────────
+\titleformat{\section}
+  {\large\bfseries\color{headcol}}
+  {}{0em}{}
+  [\vspace{2pt}{\color{secline}\rule{\linewidth}{0.4pt}}\vspace{-2pt}]
+\titlespacing*{\section}{0pt}{8pt}{3pt}
+
+% ── Badge Tags ───────────────────────────────────────────────
+\newcommand{\badge}[2]{%
+  \tikz[baseline=(x.base)]{
+    \node[inner xsep=3.5pt, inner ysep=1.6pt, rounded corners=2.5pt,
+          draw=#1, line width=0.45pt,
+          text=#1, font=\fontsize{6}{7}\selectfont\sffamily]
+      (x) {#2};
+  }%
+}
+
+\newcommand{\troute}  {\badge{tagroute}{routing}}
+\newcommand{\tgenomics}{\badge{taggenomics}{genomics}}
+\newcommand{\trl}     {\badge{tagrl}{RL}}
+
+% ── Bullet Lists ─────────────────────────────────────────────
+\setlist[itemize,1]{
+  leftmargin = 1.3em,
+  label      = {\small\textbullet},
+  itemsep    = 1pt,
+  topsep     = 2pt,
+  parsep     = 0pt,
+}
+
+% ── Helpers ──────────────────────────────────────────────────
+\newcommand{\unilogo}[1]{%
+  \raisebox{-0.5pt}{\includegraphics[height=8pt]{assets/logos/cv/#1}}%
+}
+\newcommand{\me}[1]{\textbf{#1}}
+\newcommand{\eqstar}{$^{*}$}
+\newcommand{\corr}{$^{\dagger}$}
+
+\def\pubskip{3pt}
+
+% Single publication block
+\newcommand{\pub}[4]{%
+  \vspace{\pubskip}%
+  \noindent\textbf{#1}\ifstrempty{#2}{}{\enskip #2}%
+  \begin{itemize}[topsep=0pt]
+    \item #3
+    \item \textit{#4}
+  \end{itemize}%
+}
+
+% Education / Experience entry
+\newcommand{\entry}[2]{%
+  \noindent
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textbf{#1} & {\small\color{dategray}#2}
+  \end{tabularx}%
+  \par\vspace{0pt}%
+}
+
+% ── Header / Footer ──────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[R]{\footnotesize\color{dategray}\thepage}
+
+% ============================================================
+\begin{document}
+\thispagestyle{empty}
+
+% ── NAME BLOCK ───────────────────────────────────────────────
+\noindent
+\begin{tabularx}{\linewidth}{@{}X r@{}}
+  \raisebox{-4pt}{%
+    {\fontsize{28}{32}\selectfont\bfseries 吴万星}%
+    \quad{\large\color{dategray}2027届}%
+  }
+  &
+  \begin{tabular}[b]{@{}r@{}}
+    \small\href{mailto:wuwanxing3574@gmail.com}{wuwanxing3574@gmail.com}\\[2pt]
+    \small\href{https://github.com/wwx777}{GitHub}
+    \quad \href{https://wwx777.github.io}{个人主页}
+  \end{tabular}
+\end{tabularx}
+
+\vspace{6pt}
+{\color{rulecol}\rule{\linewidth}{1.2pt}}
+\vspace{4pt}
+
+% ── ABOUT ────────────────────────────────────────────────────
+\section{个人简介}
+
+\textbf{巴黎综合理工学院（Institut Polytechnique de Paris）}计算机科学硕士在读（2025--2027），
+本科毕业于\textbf{南方科技大学}数据科学与大数据技术专业。
+现为\textbf{SUSTech-NLP}（陈冠华教授）科研助理，
+研究方向为\textbf{大语言模型协作路由系统}，
+聚焦于 LLM--SLM 路由的忠实性、泛化性与鲁棒性。
+
+\vspace{3pt}
+主要工作包括：路由公平性评测基准 RouterXBench 的设计，
+以及基于 Dirichlet 的动态隐层探针路由方法。
+一作论文 1 篇（在审）。
+
+% ── EDUCATION ────────────────────────────────────────────────
+\section{教育经历}
+
+\entry{\unilogo{ipp.png}\enskip 巴黎综合理工学院（Institut Polytechnique de Paris）}{法国巴黎}
+\textit{计算机科学硕士} \hfill \textit{2025.09 -- 2027.07}
+
+\vspace{4pt}
+\entry{\unilogo{sustech.png}\enskip 南方科技大学}{深圳}
+\textit{数据科学与大数据技术，工学学士} \hfill \textit{2021.09 -- 2025.07}
+\begin{itemize}
+  \item 智仁书院优秀毕业生（2025）
+\end{itemize}
+
+% ── EXPERIENCE ───────────────────────────────────────────────
+\section{科研经历}
+
+\entry{\unilogo{sustech.png}\enskip SUSTech-NLP 实验室}{深圳}
+\textit{科研助理}，导师：陈冠华教授 \hfill \textit{2025.01 -- 至今}
+\begin{itemize}
+  \item \textbf{RouterXBench}：设计 LLM--SLM 路由分布偏移忠实性评测矩阵。
+  \item \textbf{动态隐层探针}：开发基于 Dirichlet 分布的分布感知逐层聚合路由方法。
+\end{itemize}
+
+\section{实习经历}
+
+\entry{华大基因（BGI）智能医学研究院（IIMR）}{深圳}
+\textit{机器学习实习生（AI for Genomics）} \hfill \textit{2024.07 -- 2025.01}
+\begin{itemize}
+  \item 构建 cfDNA 特征表示（统计筛选 + 模型导向特征选择），集成学习用于结直肠癌早筛，
+        实现 \textbf{94.88\% 灵敏度}。
+\end{itemize}
+
+\vspace{4pt}
+\entry{\unilogo{pku.png}\enskip 北京大学深圳医院}{深圳}
+\textit{数据分析实习生} \hfill \textit{2023.07 -- 2023.10}
+\begin{itemize}
+  \item 对多时间点临床记录进行生物统计分析，比较不同手术方式的术后结局。
+\end{itemize}
+
+% ── PUBLICATIONS ─────────────────────────────────────────────
+\section{学术论文}
+
+\pub{Towards Fair and Comprehensive Evaluation of Routers in Collaborative LLM Systems}{\troute}
+    {\me{Wanxing Wu}\eqstar, He Zhu\eqstar, Yixia Li\eqstar, Yun Chen, Guanhua Chen\corr
+     \quad ($^*$同等贡献)}
+    {在审，2026 \quad[\href{https://arxiv.org/abs/2602.11877}{arXiv:2602.11877}]}
+
+% ── PROJECTS ─────────────────────────────────────────────────
+\section{项目经历}
+
+\noindent\textbf{ReflexSQL：自反思 Text-to-SQL Agent} \hfill \textit{2025.12 -- 2026.01}
+\begin{itemize}
+  \item 在 Spider~2.0-Lite 上设计自反思 LLM agent，结合查询内反思修正循环与跨查询经验记忆缓冲区。
+  \item Qwen3-32B 骨干模型可执行准确率从 16.29\%（基线）提升至 \textbf{42.53\%}；
+        完成骨干模型对比与消融实验。
+\end{itemize}
+
+\vspace{4pt}
+\noindent\textbf{保守离策略置信域策略优化（Conservative Off-Policy TRPO）} \hfill \textit{2025.11 -- 2026.01}
+\begin{itemize}
+  \item 针对离策略 TRPO 设计逐维掩码策略，利用在策略梯度对齐抑制冲突更新分量，
+        确保更新方向与在策略目标一致；在 PyBullet/Gym 运动控制任务上验证。
+\end{itemize}
+
+% ── HONORS ───────────────────────────────────────────────────
+\section{荣誉与奖项}
+
+\begin{itemize}[itemsep=0pt, topsep=1pt]
+  \item \textbf{优秀毕业生}，南方科技大学智仁书院（2025.07）
+  \item 优秀学生奖学金，南方科技大学（2024.10）
+  \item \textbf{美国大学生数学建模竞赛（MCM/ICM）}，Honorable Mention（2024.02）
+\end{itemize}
+
+% ── SKILLS ───────────────────────────────────────────────────
+\section{技能}
+
+\noindent\textbf{大模型与机器学习：} 推理框架（vLLM、SGLang），Agentic-RL 工作流，SFT/RL 训练，模型评测。\\[3pt]
+\noindent\textbf{编程与工具：} Python、PyTorch、Docker、Linux、Git、Shell 脚本。\\[3pt]
+\noindent\textbf{语言：} 英语（IELTS 6.5，CET-4，CET-6）；中文（母语）。
+
+\end{document}

@@ -1,0 +1,239 @@
+% ============================================================
+%  WANXING WU — Curriculum Vitae
+% ============================================================
+\documentclass[11pt, a4paper]{article}
+
+% ── Encoding & Font ──────────────────────────────────────────
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{palatino}
+\usepackage{mathpazo}
+\usepackage{microtype}
+
+% ── Page Layout ──────────────────────────────────────────────
+\usepackage[top=1.5cm, bottom=1.5cm, left=1.8cm, right=1.8cm]{geometry}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% ── Packages ─────────────────────────────────────────────────
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{etoolbox}
+\usepackage{graphicx}
+
+% ── Colors ───────────────────────────────────────────────────
+\definecolor{headcol}{RGB}{30, 30, 30}
+\definecolor{rulecol}{RGB}{180, 50, 30}
+\definecolor{secline}{RGB}{200, 200, 200}
+\definecolor{linkcol}{RGB}{40, 80, 160}
+\definecolor{dategray}{RGB}{100, 100, 100}
+\definecolor{yearcolor}{RGB}{80, 80, 80}
+
+% Tag colors
+\definecolor{tagroute}{RGB}{130, 50, 160}
+\definecolor{taggenomics}{RGB}{40, 140, 90}
+\definecolor{tagrl}{RGB}{180, 100, 20}
+\definecolor{tageff}{RGB}{130, 50, 160}
+\definecolor{oralred}{RGB}{200, 40, 30}
+
+\hypersetup{
+  colorlinks = true,
+  urlcolor   = linkcol,
+  linkcolor  = linkcol,
+  pdfauthor  = {Wanxing Wu},
+  pdftitle   = {Wanxing Wu --- Curriculum Vitae},
+}
+
+% ── Section Headers ──────────────────────────────────────────
+\titleformat{\section}
+  {\large\scshape\bfseries\color{headcol}}
+  {}{0em}{\MakeUppercase}
+  [\vspace{2pt}{\color{secline}\rule{\linewidth}{0.4pt}}\vspace{-2pt}]
+\titlespacing*{\section}{0pt}{12pt}{5pt}
+
+% ── Badge Tags ───────────────────────────────────────────────
+\newcommand{\badge}[2]{%
+  \tikz[baseline=(x.base)]{
+    \node[inner xsep=3.5pt, inner ysep=1.6pt, rounded corners=2.5pt,
+          draw=#1, line width=0.45pt,
+          text=#1, font=\fontsize{6}{7}\selectfont\sffamily]
+      (x) {#2};
+  }%
+}
+
+\newcommand{\troute}  {\badge{tagroute}{routing}}
+\newcommand{\tgenomics}{\badge{taggenomics}{genomics}}
+\newcommand{\trl}     {\badge{tagrl}{RL}}
+\newcommand{\teff}    {\badge{tageff}{efficiency}}
+
+% ── Bullet Lists ─────────────────────────────────────────────
+\setlist[itemize,1]{
+  leftmargin = 1.4em,
+  label      = {\small\textbullet},
+  itemsep    = 1pt,
+  topsep     = 2pt,
+  parsep     = 0pt,
+}
+
+% ── Helpers ──────────────────────────────────────────────────
+\newcommand{\unilogo}[1]{%
+  \raisebox{-0.5pt}{\includegraphics[height=8pt]{assets/logos/cv/#1}}%
+}
+\newcommand{\me}[1]{\textbf{#1}}
+\newcommand{\eqstar}{$^{*}$}
+\newcommand{\corr}{$^{\dagger}$}
+
+% Single publication block
+\newcommand{\pub}[4]{%
+  \vspace{3pt}%
+  \noindent\textbf{#1}\ifstrempty{#2}{}{\enskip #2}%
+  \begin{itemize}[topsep=0pt]
+    \item #3
+    \item \textit{#4}
+  \end{itemize}%
+}
+
+% Education / Experience entry
+\newcommand{\entry}[2]{%
+  \noindent
+  \begin{tabularx}{\linewidth}{@{}X r@{}}
+    \textbf{#1} & {\small\color{dategray}#2}
+  \end{tabularx}%
+  \par\vspace{0pt}%
+}
+
+% ── Header / Footer ──────────────────────────────────────────
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\footnotesize\color{dategray}Wanxing Wu --- Curriculum Vitae}
+\fancyfoot[R]{\footnotesize\color{dategray}\thepage}
+
+% ============================================================
+\begin{document}
+\thispagestyle{empty}
+
+% ── NAME BLOCK ───────────────────────────────────────────────
+\noindent
+\begin{tabularx}{\linewidth}{@{}X r@{}}
+  \raisebox{-4pt}{%
+    {\fontsize{28}{32}\selectfont\bfseries WANXING WU}%
+    \quad{\large\color{dategray}M.S. Candidate}%
+  }
+  &
+  \begin{tabular}[b]{@{}r@{}}
+    \small\href{mailto:wuwanxing3574@gmail.com}{wuwanxing3574@gmail.com}\\[2pt]
+    \small\href{https://github.com/wwx777}{GitHub}
+    \quad \href{https://www.linkedin.com/in/wanxing-wu-b36996388/}{LinkedIn}
+    \quad \href{https://wwx777.github.io}{Homepage}
+  \end{tabular}
+\end{tabularx}
+
+\vspace{6pt}
+{\color{rulecol}\rule{\linewidth}{1.2pt}}
+\vspace{4pt}
+
+% ── ABOUT ────────────────────────────────────────────────────
+\section{About}
+
+I am an M.S.\ student in Computer Science at
+\textbf{Institut Polytechnique de Paris},
+with a B.S.\ in Data Science from
+\textbf{Southern University of Science and Technology (SUSTech)}.
+I am a Research Assistant at \textbf{SUSTech-NLP}
+(Prof.~Guanhua Chen), working on cost-efficient collaborative
+LLM--SLM routing with a focus on faithfulness, generalization, and robustness.
+
+\vspace{5pt}
+My research interests span \textbf{collaborative LLM systems},
+\textbf{model efficiency}, and \textbf{AI for science}.
+Current directions include: routing benchmark design
+(\href{https://arxiv.org/abs/2602.11877}{RouterXBench}),
+confidence-calibrated routing via Dirichlet-based hidden-state probing,
+and agentic frameworks for structured generation (ReflexSQL).
+
+% ── EDUCATION ────────────────────────────────────────────────
+\section{Education}
+
+\entry{\unilogo{ipp.png}\enskip Institut Polytechnique de Paris}{Paris, France}
+\textit{M.S.\ in Computer Science} \hfill \textit{Sep 2025 -- Jul 2027}
+
+\vspace{5pt}
+\entry{\unilogo{sustech.png}\enskip Southern University of Science and Technology (SUSTech)}{Shenzhen, China}
+\textit{B.S.\ in Data Science and Big Data Technology} \hfill \textit{Sep 2021 -- Jul 2025}
+\begin{itemize}
+  \item Outstanding Graduate, Zhiren College (Jul 2025).
+\end{itemize}
+
+% ── RESEARCH ─────────────────────────────────────────────────
+\section{Research}
+
+\entry{\unilogo{sustech.png}\enskip SUSTech-NLP Group}{Shenzhen, China}
+\textit{Research Assistant}, advised by Prof.~Guanhua Chen. \hfill \textit{Jan 2025 -- Present}
+\begin{itemize}
+  \item \textbf{RouterXBench}: Designed an evaluation matrix for distribution-shift faithfulness analysis in LLM--SLM routing.
+  \item \textbf{Dynamic Hidden-State Probing}: Developed a Dirichlet-based probing method with distribution-aware layer aggregation for routing decisions.
+\end{itemize}
+
+% ── INTERNSHIP ───────────────────────────────────────────────
+\section{Internship}
+
+\entry{Institute of Intelligent Medical Research (IIMR), BGI}{Shenzhen, China}
+\textit{Machine Learning Intern (AI for Genomics).} \hfill \textit{Jul 2024 -- Jan 2025}
+\begin{itemize}
+  \item Developed cfDNA-based feature representations via statistical filtering and model-guided selection; applied ensemble learning for early colorectal cancer detection, achieving \textbf{94.88\% sensitivity}.
+\end{itemize}
+
+\vspace{4pt}
+\entry{\unilogo{pku.png}\enskip Peking University Shenzhen Hospital}{Shenzhen, China}
+\textit{Data Analyst Intern.} \hfill \textit{Jul 2023 -- Oct 2023}
+\begin{itemize}
+  \item Performed biostatistical analysis on multi-timepoint clinical records to compare postoperative outcomes across surgical methods.
+\end{itemize}
+
+% ── PUBLICATIONS ─────────────────────────────────────────────
+\section{Publications}
+
+\pub{Towards Fair and Comprehensive Evaluation of Routers in Collaborative LLM Systems}{\troute}
+    {\me{Wanxing Wu}\eqstar, He Zhu\eqstar, Yixia Li\eqstar, Yun Chen, Guanhua Chen\corr
+     \quad ($^*$Equal contribution)}
+    {Under Review, 2026 \quad[\href{https://arxiv.org/abs/2602.11877}{arXiv:2602.11877}]}
+
+% ── PROJECTS ─────────────────────────────────────────────────
+\section{Academic Projects}
+
+\noindent\textbf{ReflexSQL: Self-Reflective Agent for Text-to-SQL} \hfill \textit{Dec 2025 -- Jan 2026}
+\begin{itemize}
+  \item Designed a self-reflective LLM agent for Text-to-SQL on Spider~2.0-Lite, combining an intra-query reflection--revision loop with a continual memory buffer that accumulates exploration experience across queries to guide future generation.
+  \item Improved executable accuracy from 16.29\% (base) to \textbf{42.53\%} on Qwen3-32B; conducted backbone comparison and ablation studies.
+\end{itemize}
+
+\vspace{4pt}
+\noindent\textbf{Conservative Off-Policy Trust Region Policy Optimization} \hfill \textit{Nov 2025 -- Jan 2026}
+\begin{itemize}
+  \item Developed a dimension-wise masking strategy for off-policy TRPO that leverages on-policy gradient alignment to suppress conflicting update components, ensuring update directions remain consistent with the on-policy objective; validated on PyBullet/Gym locomotion tasks.
+\end{itemize}
+
+% ── HONORS ───────────────────────────────────────────────────
+\section{Honors \& Awards}
+
+\begin{itemize}
+  \item \textbf{Outstanding Graduate}, Zhiren College, SUSTech (Jul 2025).
+  \item Outstanding Student Scholarship, SUSTech (Oct 2024).
+  \item \textbf{MCM/ICM Mathematical Contest in Modeling}, Honorable Mention (Feb 2024).
+\end{itemize}
+
+% ── SKILLS ───────────────────────────────────────────────────
+\section{Skills}
+
+\noindent\textbf{LLM \& ML:} inference pipeline (vLLM, SGLang), agentic-RL workflows, SFT/RL training, model evaluation.\\[3pt]
+\noindent\textbf{Programming \& Dev:} Python, PyTorch, Docker, Linux, Git, shell scripting.\\[3pt]
+\noindent\textbf{Languages:} English (IELTS 6.5, CET-4, CET-6); Chinese (Native).
+
+\end{document}
